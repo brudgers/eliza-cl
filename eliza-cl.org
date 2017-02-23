@@ -18,6 +18,8 @@
              (simple-equal (rest x) (rest y)))))
 #+END_SRC
 ** pat-match
+The naive version is so straight forward it could be template code for recursing on a list (or two lists). There is a certain concision to the first part which avoids enumerating all the cases of atoms and lists. Though it arises more from the template style than anything else. 
+*** A naive version
 #+BEGIN_SRC lisp
   (defun pat-match (input pattern)
     "Does pattern match input? Any variable can match anything."
@@ -27,4 +29,96 @@
             (eql pattern input)
             (and (pat-match (first input) (first pattern))
                  (pat-match (rest input) (rest pattern))))))
+#+END_SRC
+*** A second buggy version
+One problem is that =(eql pattern input)= may return =t=. While =nil= is not a problem for =append=, =t= is...since =t= is not a list. Booleans are actually tough if they're overloaded as they are many languages.
+
+The second problem is semi-boolean contexts: those in which =nil= may be returned from a successful match versus where =nil= is returned because a predicate turned out to be false. Did I say booleans are tough?
+
+The final problem is that we want the same variable (e.g. =?X=) to consistently be bound to the same expression when it appears multiple times in an input.
+#+BEGIN_SRC lisp
+  (defun pat-match (pattern input)
+    "BUGGY Second version."
+    (if (variable-p pattern)
+        (list (cons pattern input))
+        (if (or (atom pattern) (atom input))
+            (eql pattern input)
+            (append (pat-match (first pattern) (first input))
+                    (pat-match (rest pattern) (rest input))))))
+#+END_SRC
+*** A third version
+The first step in the third version is to turn =pat-match= into a true predicate that only returns =nil= for failure. It's worth noting that only having a single value that indicates =false= is helpful here.
+#+NAME: pat-match-constants
+#+BEGIN_SRC lisp
+  (defconstant fail nil "indicates pat-match failure.")
+
+  (defconstant no-bindings '(t . t)
+    "Indicates a pattern match success, with no variables.")
+#+END_SRC
+Building abstractions over =assoc= enables using the language of variables and bindings rather than low level lisp.
+#+NAME: binding-utilities
+#+BEGIN_SRC lisp
+  (defun get-bindings (var bindings)
+    "Find a (variable . value) pair in a binding list."
+    (assoc var bindings))
+
+  (defun binding-val (binding)
+    "Get the value part of a single binding."
+    (cdr binding))
+
+  (defun lookup (var bindings)
+    "Get the value part (for var) from a binding list."
+    (binding-val (get-bindings var bindings)))
+
+  (defun extend-bindings (var val bindings)
+    "Add a (var . value) pair to a binding list."
+    (cons (cons var val) bindings))
+#+END_SRC
+There are five cases for =pat-match=:
+1. Bindings list is =fail= and the match fails.
+2. Pattern is a single variable.
+3. Pattern and input are =eql=.
+4. Pattern and input are both lists.
+5. None of these holds and the match fails.
+#+NAME: pat-match
+#+BEGIN_SRC lisp :noweb tangle
+  <<pat-match-constants>>
+
+  <<binding-utilities>>
+
+  <<match-variable>>
+
+  (defun pat-match (pattern input &optional (bindings non-bindings))
+    "Match pattern against input in the context of bindings."
+    (cond ((eq bindings fail) fail)
+          ((variable-p pattern)
+           (match-variable pattern input bindings))
+          ((eql pattern input) bindings)
+          ((and (consp pattern)
+                (consp input))
+           (pat-match (rest pattern)
+                      (rest input)
+                      (pat-match (first pattern)
+                                 (first input)
+                                 bindings)))
+          (t fail)))
+#+END_SRC
+#+NAME: match-variable
+#+BEGIN_SRC lisp
+  (defun match-variable (var input bindings)
+    "Does var match input. Uses bindings. Returns bindings with or without an update depending on match."
+    (let ((binding (get-binding var bindings)))
+      (cond ((not binding) (extend-bindings var input bindings))
+            ((equal input (binding-val binding)) bindings)
+            (t fail))))
+#+END_SRC
+
+** variable-p
+This function brings up two interesting aspects of Common Lisp. The first is that =atom='s are not truely atomic. The second is that predicate syntax in Common Lisp suffers from the same big-language inconsistencies as might be found in PHP.
+#+BEGIN_SRC lisp
+  (defun variable-p (x)
+    "Is x a variable where a variable is a symbol beginning with '?'"
+    (and (symbolp x)
+         (equal (char (symbol-name x) 0)
+                #\?)))
 #+END_SRC
