@@ -7,6 +7,7 @@
 3. Developing a work process around Literate Programming.
 * Introduction
 * System
+This is my first attempt at using ASDF to build a system. The system uses utility files available [[https://github.com/brudgers/norvig-utils][here]].
 #+BEGIN_SRC lisp :tangle eliza.asd
   (load "../utils/norvig-utils")
   (load "../utils/norvig-debugger")
@@ -24,7 +25,8 @@
       :serial t
       :components ((:file "eliza")))
 #+END_SRC
-* Package
+** :eliza package
+As is the case with ASDF, this is also my first time developing using Common Lisp's package system.
 #+NAME: eliza-package
 #+BEGIN_SRC lisp
   (in-package :eliza)
@@ -39,7 +41,6 @@
         (and (simple-equal (first x) (first y))
              (simple-equal (rest x) (rest y)))))
 #+END_SRC
-
 ** variable-p
 This function brings up two interesting aspects of Common Lisp. The first is that =atom='s are not truely atomic. The second is that predicate syntax in Common Lisp suffers from the same big-language inconsistencies as might be found in PHP.
 #+NAME: variable-p
@@ -79,7 +80,7 @@ The final problem is that we want the same variable (e.g. =?X=) to consistently 
             (append (pat-match (first pattern) (first input))
                     (pat-match (rest pattern) (rest input))))))
 #+END_SRC
-*** A third version
+*** pattern matching constatns
 The first step in the third version is to turn =pat-match= into a true predicate that only returns =nil= for failure. It's worth noting that only having a single value that indicates =false= is helpful here.
 #+NAME: pat-match-constants
 #+BEGIN_SRC lisp
@@ -88,6 +89,9 @@ The first step in the third version is to turn =pat-match= into a true predicate
   (defconstant no-bindings '(t . t)
     "Indicates a pattern match success, with no variables.")
 #+END_SRC
+*** abstractions over assoc
+*Note:* The ASDF build system loads these from the =norvig-utils= repository. They are shown here to maintain consistency with the text.
+
 Building abstractions over =assoc= enables using the language of variables and bindings rather than low level lisp.
 #+NAME: binding-utilities
 #+BEGIN_SRC lisp
@@ -107,6 +111,7 @@ Building abstractions over =assoc= enables using the language of variables and b
     "Add a (var . value) pair to a binding list."
     (cons (cons var val) bindings))
 #+END_SRC
+*** A third version
 There are five cases for =pat-match=:
 1. Bindings list is =fail= and the match fails.
 2. Pattern is a single variable.
