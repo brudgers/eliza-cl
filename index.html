@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-03-08 Wed 14:28 -->
+<!-- 2017-03-08 Wed 14:34 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>eliza-cl.org</title>
@@ -233,21 +233,21 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org4901535">Preface</a></li>
-<li><a href="#org98f6d56">Introduction</a></li>
-<li><a href="#orgaebaed1">System</a></li>
-<li><a href="#org00770c3">Package</a></li>
-<li><a href="#org2bb91a1">Pattern Matching</a>
+<li><a href="#org04c9640">Preface</a></li>
+<li><a href="#org0cee90f">Introduction</a></li>
+<li><a href="#org1f479fd">System</a></li>
+<li><a href="#org4d3432e">Package</a></li>
+<li><a href="#orgf578a17">Pattern Matching</a>
 <ul>
-<li><a href="#orgd65cbfd">simple-equal</a></li>
-<li><a href="#orgf8180f4">variable-p</a></li>
-<li><a href="#org4b9cb6f">pat-match</a>
+<li><a href="#org42b5938">simple-equal</a></li>
+<li><a href="#org88177b1">variable-p</a></li>
+<li><a href="#org1bc4915">pat-match</a>
 <ul>
-<li><a href="#org12fd9b0">A naive version</a></li>
-<li><a href="#org252bb0a">A second buggy version</a></li>
-<li><a href="#orgf8bddc8">A third version</a></li>
-<li><a href="#orgfb5e6f8">Segment Pattern Matching</a></li>
-<li><a href="#orgb9e4347">Final</a></li>
+<li><a href="#org30411a6">A naive version</a></li>
+<li><a href="#org69c9c1c">A second buggy version</a></li>
+<li><a href="#org9c6f462">A third version</a></li>
+<li><a href="#orgb429da3">Segment Pattern Matching</a></li>
+<li><a href="#org0bb14dc">Final</a></li>
 </ul>
 </li>
 </ul>
@@ -255,9 +255,9 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-org4901535" class="outline-2">
-<h2 id="org4901535">Preface</h2>
-<div class="outline-text-2" id="text-org4901535">
+<div id="outline-container-org04c9640" class="outline-2">
+<h2 id="org04c9640">Preface</h2>
+<div class="outline-text-2" id="text-org04c9640">
 <p>
 <b><b>The computer code here is not original to me.</b></b> and this document reflects several of my ongoing projects:
 </p>
@@ -268,12 +268,12 @@ for the JavaScript code in this tag.
 </ol>
 </div>
 </div>
-<div id="outline-container-org98f6d56" class="outline-2">
-<h2 id="org98f6d56">Introduction</h2>
+<div id="outline-container-org0cee90f" class="outline-2">
+<h2 id="org0cee90f">Introduction</h2>
 </div>
-<div id="outline-container-orgaebaed1" class="outline-2">
-<h2 id="orgaebaed1">System</h2>
-<div class="outline-text-2" id="text-orgaebaed1">
+<div id="outline-container-org1f479fd" class="outline-2">
+<h2 id="org1f479fd">System</h2>
+<div class="outline-text-2" id="text-org1f479fd">
 <div class="org-src-container">
 <pre class="src src-lisp">(load "../utils/norvig-utils")
 (load "../utils/norvig-debugger")
@@ -294,21 +294,21 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-org00770c3" class="outline-2">
-<h2 id="org00770c3">Package</h2>
-<div class="outline-text-2" id="text-org00770c3">
+<div id="outline-container-org4d3432e" class="outline-2">
+<h2 id="org4d3432e">Package</h2>
+<div class="outline-text-2" id="text-org4d3432e">
 <div class="org-src-container">
-<pre class="src src-lisp" id="org2c640cf">(in-package :eliza-asd)
+<pre class="src src-lisp" id="orgc7f970a">(in-package :eliza-asd)
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org2bb91a1" class="outline-2">
-<h2 id="org2bb91a1">Pattern Matching</h2>
-<div class="outline-text-2" id="text-org2bb91a1">
-</div><div id="outline-container-orgd65cbfd" class="outline-3">
-<h3 id="orgd65cbfd">simple-equal</h3>
-<div class="outline-text-3" id="text-orgd65cbfd">
+<div id="outline-container-orgf578a17" class="outline-2">
+<h2 id="orgf578a17">Pattern Matching</h2>
+<div class="outline-text-2" id="text-orgf578a17">
+</div><div id="outline-container-org42b5938" class="outline-3">
+<h3 id="org42b5938">simple-equal</h3>
+<div class="outline-text-3" id="text-org42b5938">
 <div class="org-src-container">
 <pre class="src src-lisp">(defun simple-equal (x y)
   "Are x and y equal. Does not check inside strings."
@@ -321,14 +321,14 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgf8180f4" class="outline-3">
-<h3 id="orgf8180f4">variable-p</h3>
-<div class="outline-text-3" id="text-orgf8180f4">
+<div id="outline-container-org88177b1" class="outline-3">
+<h3 id="org88177b1">variable-p</h3>
+<div class="outline-text-3" id="text-org88177b1">
 <p>
 This function brings up two interesting aspects of Common Lisp. The first is that <code>atom</code>'s are not truely atomic. The second is that predicate syntax in Common Lisp suffers from the same big-language inconsistencies as might be found in PHP.
 </p>
 <div class="org-src-container">
-<pre class="src src-lisp" id="org9d52d50">(defun variable-p (x)
+<pre class="src src-lisp" id="org4722707">(defun variable-p (x)
   "Is x a variable where a variable is a symbol beginning with '?'"
   (and (symbolp x)
        (equal (char (symbol-name x) 0)
@@ -337,16 +337,16 @@ This function brings up two interesting aspects of Common Lisp. The first is tha
 </div>
 </div>
 </div>
-<div id="outline-container-org4b9cb6f" class="outline-3">
-<h3 id="org4b9cb6f">pat-match</h3>
-<div class="outline-text-3" id="text-org4b9cb6f">
+<div id="outline-container-org1bc4915" class="outline-3">
+<h3 id="org1bc4915">pat-match</h3>
+<div class="outline-text-3" id="text-org1bc4915">
 <p>
 The naive version is so straight forward it could be template code for recursing on a list (or two lists). There is a certain concision to the first part which avoids enumerating all the cases of atoms and lists. Though it arises more from the template style than anything else. 
 </p>
 </div>
-<div id="outline-container-org12fd9b0" class="outline-4">
-<h4 id="org12fd9b0">A naive version</h4>
-<div class="outline-text-4" id="text-org12fd9b0">
+<div id="outline-container-org30411a6" class="outline-4">
+<h4 id="org30411a6">A naive version</h4>
+<div class="outline-text-4" id="text-org30411a6">
 <div class="org-src-container">
 <pre class="src src-lisp">(defun pat-match (input pattern)
   "Does pattern match input? Any variable can match anything."
@@ -360,9 +360,9 @@ The naive version is so straight forward it could be template code for recursing
 </div>
 </div>
 </div>
-<div id="outline-container-org252bb0a" class="outline-4">
-<h4 id="org252bb0a">A second buggy version</h4>
-<div class="outline-text-4" id="text-org252bb0a">
+<div id="outline-container-org69c9c1c" class="outline-4">
+<h4 id="org69c9c1c">A second buggy version</h4>
+<div class="outline-text-4" id="text-org69c9c1c">
 <p>
 One problem is that <code>(eql pattern input)</code> may return <code>t</code>. While <code>nil</code> is not a problem for <code>append</code>, <code>t</code> is&#x2026;since <code>t</code> is not a list. Booleans are actually tough if they're overloaded as they are many languages.
 </p>
@@ -387,14 +387,14 @@ The final problem is that we want the same variable (e.g. <code>?X</code>) to co
 </div>
 </div>
 </div>
-<div id="outline-container-orgf8bddc8" class="outline-4">
-<h4 id="orgf8bddc8">A third version</h4>
-<div class="outline-text-4" id="text-orgf8bddc8">
+<div id="outline-container-org9c6f462" class="outline-4">
+<h4 id="org9c6f462">A third version</h4>
+<div class="outline-text-4" id="text-org9c6f462">
 <p>
 The first step in the third version is to turn <code>pat-match</code> into a true predicate that only returns <code>nil</code> for failure. It's worth noting that only having a single value that indicates <code>false</code> is helpful here.
 </p>
 <div class="org-src-container">
-<pre class="src src-lisp" id="org317b885">(defconstant fail nil "indicates pat-match failure.")
+<pre class="src src-lisp" id="orgd1756b4">(defconstant fail nil "indicates pat-match failure.")
 
 (defconstant no-bindings '(t . t)
   "Indicates a pattern match success, with no variables.")
@@ -404,7 +404,7 @@ The first step in the third version is to turn <code>pat-match</code> into a tru
 Building abstractions over <code>assoc</code> enables using the language of variables and bindings rather than low level lisp.
 </p>
 <div class="org-src-container">
-<pre class="src src-lisp" id="org2dc88c2">(defun get-bindings (var bindings)
+<pre class="src src-lisp" id="org7aef6ea">(defun get-bindings (var bindings)
   "Find a (variable . value) pair in a binding list."
   (assoc var bindings))
 
@@ -449,7 +449,7 @@ There are five cases for <code>pat-match</code>:
 </pre>
 </div>
 <div class="org-src-container">
-<pre class="src src-lisp" id="org8b7f60a">(defun match-variable (var input bindings)
+<pre class="src src-lisp" id="orgbfa9ccb">(defun match-variable (var input bindings)
   "Does var match input. Uses bindings. Returns bindings with or without an update depending on match."
   (let ((binding (get-bindings var bindings)))
     (cond ((not binding) (extend-bindings var input bindings))
@@ -459,9 +459,9 @@ There are five cases for <code>pat-match</code>:
 </div>
 </div>
 </div>
-<div id="outline-container-orgfb5e6f8" class="outline-4">
-<h4 id="orgfb5e6f8">Segment Pattern Matching</h4>
-<div class="outline-text-4" id="text-orgfb5e6f8">
+<div id="outline-container-orgb429da3" class="outline-4">
+<h4 id="orgb429da3">Segment Pattern Matching</h4>
+<div class="outline-text-4" id="text-orgb429da3">
 <p>
 It is useful to have two types of variables, those that match individual input elements and others that behave like Lisp's <code>&amp;rest</code> parameter. The latter can be thought of as matching segments. This would allow a syntax such as <code>(?P need . ?X)</code>.
 </p>
@@ -497,7 +497,7 @@ Updating <code>pat-match</code> for the new behavior:
 Adding the new predicate highlights Common Lisp's flexibility in regards to naming symbols by allowing a notation evocative of the kleene star.
 </p>
 <div class="org-src-container">
-<pre class="src src-lisp" id="org985e820">(defun segment-pattern-p (pattern)
+<pre class="src src-lisp" id="org2ffeb6d">(defun segment-pattern-p (pattern)
   "Is this a segment matching pattern: ((?* var) . pat)"
   (and (consp pattern)
        (starts-with (first pattern) '?*)))
@@ -535,11 +535,11 @@ The first pass at <code>segment-match</code> address the problems that arise whe
 </div>
 </div>
 
-<div id="outline-container-orgb9e4347" class="outline-4">
-<h4 id="orgb9e4347">Final</h4>
-<div class="outline-text-4" id="text-orgb9e4347">
+<div id="outline-container-org0bb14dc" class="outline-4">
+<h4 id="org0bb14dc">Final</h4>
+<div class="outline-text-4" id="text-org0bb14dc">
 <div class="org-src-container">
-<pre class="src src-lisp" id="orgd677fbf">&lt;&lt;eliza-package&gt;&gt;
+<pre class="src src-lisp" id="orgd0f3dc7">&lt;&lt;eliza-package&gt;&gt;
 
 &lt;&lt;pat-match-constants&gt;&gt;
 
@@ -557,7 +557,7 @@ The first pass at <code>segment-match</code> address the problems that arise whe
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: benrudgers</p>
-<p class="date">Created: 2017-03-08 Wed 14:28</p>
+<p class="date">Created: 2017-03-08 Wed 14:34</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
