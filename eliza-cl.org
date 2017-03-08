@@ -6,7 +6,29 @@
 2. Learning more Emacs in general and org-mode in particular.
 3. Developing a work process around Literate Programming.
 * Introduction
+* System
+#+BEGIN_SRC lisp :tangle eliza.asd
+  (load "../utils/norvig-utils")
+  (load "../utils/norvig-debugger")
 
+  (defpackage #:eliza-asd
+    (:use :common-lisp
+          :asdf
+          :norvig-utils
+          :norvig-debugger
+          :kludgecode))
+
+  (in-package :eliza-asd)
+
+  (defsystem eliza
+      :serial t
+      :components ((:file "pat-match")))
+#+END_SRC
+* Package
+#+NAME: eliza-package
+#+BEGIN_SRC lisp
+  (in-package :eliza-asd)
+#+END_SRC
 * Pattern Matching
 ** simple-equal
 #+BEGIN_SRC lisp
@@ -111,7 +133,7 @@ There are five cases for =pat-match=:
 #+BEGIN_SRC lisp
   (defun match-variable (var input bindings)
     "Does var match input. Uses bindings. Returns bindings with or without an update depending on match."
-    (let ((binding (get-binding var bindings)))
+    (let ((binding (get-bindings var bindings)))
       (cond ((not binding) (extend-bindings var input bindings))
             ((equal input (binding-val binding)) bindings)
             (t fail))))
@@ -149,7 +171,7 @@ Adding the new predicate highlights Common Lisp's flexibility in regards to nami
   (defun segment-pattern-p (pattern)
     "Is this a segment matching pattern: ((?* var) . pat)"
     (and (consp pattern)
-         (starts-with (first-pattern) '?*)))
+         (starts-with (first pattern) '?*)))
 #+END_SRC
 The first pass at =segment-match= address the problems that arise when the next element of the pattern is contained in the input but there are intervening elements between what has been matched already and the match for the next element of the pattern. It allows looking further ahead in the input at the expense of requiring a segment-variable to be the last variable in a pattern.
 #+BEGIN_SRC lisp :tangle yes
@@ -180,7 +202,9 @@ The first pass at =segment-match= address the problems that arise when the next 
 
 *** Final
 #+NAME: pat-match
-#+BEGIN_SRC lisp :noweb tangle :tangle yes
+#+BEGIN_SRC lisp :noweb tangle :tangle pat-match.lisp
+  <<eliza-package>>
+
   <<pat-match-constants>>
 
   <<binding-utilities>>
