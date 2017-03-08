@@ -1,15 +1,15 @@
 (load "../utils/norvig-utils")
 (load "../utils/norvig-debugger")
 
-(defpackage #:eliza-asd
+(defpackage #:eliza
   (:use :common-lisp
         :asdf
         :norvig-utils
         :norvig-debugger
         :kludgecode))
 
-(in-package :eliza-asd)
+(in-package :eliza)
 
 (defsystem eliza
     :serial t
-    :components ((:file "pat-match")))
+    :components ((:file "eliza")))

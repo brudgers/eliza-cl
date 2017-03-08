@@ -11,23 +11,23 @@
   (load "../utils/norvig-utils")
   (load "../utils/norvig-debugger")
 
-  (defpackage #:eliza-asd
+  (defpackage #:eliza
     (:use :common-lisp
           :asdf
           :norvig-utils
           :norvig-debugger
           :kludgecode))
 
-  (in-package :eliza-asd)
+  (in-package :eliza)
 
   (defsystem eliza
       :serial t
-      :components ((:file "pat-match")))
+      :components ((:file "eliza")))
 #+END_SRC
 * Package
 #+NAME: eliza-package
 #+BEGIN_SRC lisp
-  (in-package :eliza-asd)
+  (in-package :eliza)
 #+END_SRC
 * Pattern Matching
 ** simple-equal
@@ -147,6 +147,7 @@ It is useful to have two types of variables, those that match individual input e
   ((?P MR HULOT AND I) (?X A VACTION))
 #+END_SRC
 Updating =pat-match= for the new behavior:
+#+NAME:  pat-match
 #+BEGIN_SRC lisp
   (defun pat-match (pattern input &optional (bindings no-bindings))
     "Match pattern against input in context of the bindings."
@@ -174,6 +175,7 @@ Adding the new predicate highlights Common Lisp's flexibility in regards to nami
          (starts-with (first pattern) '?*)))
 #+END_SRC
 The first pass at =segment-match= address the problems that arise when the next element of the pattern is contained in the input but there are intervening elements between what has been matched already and the match for the next element of the pattern. It allows looking further ahead in the input at the expense of requiring a segment-variable to be the last variable in a pattern.
+#+NAME:  segment-match
 #+BEGIN_SRC lisp 
   (defun segment-match (pattern input bindings &optional (start 0))
     "Match the segment patter ((?* var) . pat) against input."
@@ -201,8 +203,8 @@ The first pass at =segment-match= address the problems that arise when the next 
 #+END_SRC
 
 *** Final
-#+NAME: pat-match
-#+BEGIN_SRC lisp :noweb tangle :tangle pat-match.lisp
+#+NAME: eliza
+#+BEGIN_SRC lisp :noweb tangle :tangle eliza.lisp
   <<eliza-package>>
 
   <<pat-match-constants>>
@@ -213,4 +215,9 @@ The first pass at =segment-match= address the problems that arise when the next 
 
   <<match-variable>>
 
+  <<pat-match>>
+
+  <<segment-match>>
+
+  <<segment-pattern-p>>
 #+END_SRC
