@@ -147,7 +147,7 @@ It is useful to have two types of variables, those that match individual input e
   ((?P MR HULOT AND I) (?X A VACTION))
 #+END_SRC
 Updating =pat-match= for the new behavior:
-#+BEGIN_SRC lisp :tangle yes
+#+BEGIN_SRC lisp
   (defun pat-match (pattern input &optional (bindings no-bindings))
     "Match pattern against input in context of the bindings."
     (cond ((eq bindings fail) fail)
@@ -167,14 +167,14 @@ Updating =pat-match= for the new behavior:
 #+END_SRC
 Adding the new predicate highlights Common Lisp's flexibility in regards to naming symbols by allowing a notation evocative of the kleene star.
 #+NAME: segment-pattern-p
-#+BEGIN_SRC lisp :tangle yes
+#+BEGIN_SRC lisp 
   (defun segment-pattern-p (pattern)
     "Is this a segment matching pattern: ((?* var) . pat)"
     (and (consp pattern)
          (starts-with (first pattern) '?*)))
 #+END_SRC
 The first pass at =segment-match= address the problems that arise when the next element of the pattern is contained in the input but there are intervening elements between what has been matched already and the match for the next element of the pattern. It allows looking further ahead in the input at the expense of requiring a segment-variable to be the last variable in a pattern.
-#+BEGIN_SRC lisp :tangle yes
+#+BEGIN_SRC lisp 
   (defun segment-match (pattern input bindings &optional (start 0))
     "Match the segment patter ((?* var) . pat) against input."
     (let ((var (second (first pattern)))
