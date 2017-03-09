@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-03-08 Wed 16:02 -->
+<!-- 2017-03-08 Wed 20:26 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>eliza-cl.org</title>
@@ -233,26 +233,26 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org34a1050">Preface</a></li>
-<li><a href="#org4332e6e">Introduction</a></li>
-<li><a href="#orgbaf5972">System</a>
+<li><a href="#orgdfb680a">Preface</a></li>
+<li><a href="#org6edd54a">Introduction</a></li>
+<li><a href="#org76adc42">System</a>
 <ul>
-<li><a href="#orgb3484c0">:eliza package</a></li>
+<li><a href="#org546941b">:eliza package</a></li>
 </ul>
 </li>
-<li><a href="#orgcae5354">Pattern Matching</a>
+<li><a href="#org6c8d4fd">Pattern Matching</a>
 <ul>
-<li><a href="#orgc11bba5">simple-equal</a></li>
-<li><a href="#orgedff3d5">variable-p</a></li>
-<li><a href="#org2ca50a9">pat-match</a>
+<li><a href="#org1a5e185">simple-equal</a></li>
+<li><a href="#orgf34be5c">variable-p</a></li>
+<li><a href="#org9c67cc5">pat-match</a>
 <ul>
-<li><a href="#org2a4f432">A naive version</a></li>
-<li><a href="#orge60c9b1">A second buggy version</a></li>
-<li><a href="#orgb886215">pattern matching constatns</a></li>
-<li><a href="#org94edef0">abstractions over assoc</a></li>
-<li><a href="#org879d879">A third version</a></li>
-<li><a href="#org2f4b12a">Segment Pattern Matching</a></li>
-<li><a href="#org627affd">Final</a></li>
+<li><a href="#org820b59f">A naive version</a></li>
+<li><a href="#org4f1148f">A second buggy version</a></li>
+<li><a href="#org22fff8a">pattern matching constants</a></li>
+<li><a href="#org378d69a">abstractions over assoc</a></li>
+<li><a href="#org775916f">A third version</a></li>
+<li><a href="#org7736ad0">Segment Pattern Matching</a></li>
+<li><a href="#org776ecc9">Final</a></li>
 </ul>
 </li>
 </ul>
@@ -260,9 +260,9 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-org34a1050" class="outline-2">
-<h2 id="org34a1050">Preface</h2>
-<div class="outline-text-2" id="text-org34a1050">
+<div id="outline-container-orgdfb680a" class="outline-2">
+<h2 id="orgdfb680a">Preface</h2>
+<div class="outline-text-2" id="text-orgdfb680a">
 <p>
 <b><b>The computer code here is not original to me.</b></b> and this document reflects several of my ongoing projects:
 </p>
@@ -273,12 +273,12 @@ for the JavaScript code in this tag.
 </ol>
 </div>
 </div>
-<div id="outline-container-org4332e6e" class="outline-2">
-<h2 id="org4332e6e">Introduction</h2>
+<div id="outline-container-org6edd54a" class="outline-2">
+<h2 id="org6edd54a">Introduction</h2>
 </div>
-<div id="outline-container-orgbaf5972" class="outline-2">
-<h2 id="orgbaf5972">System</h2>
-<div class="outline-text-2" id="text-orgbaf5972">
+<div id="outline-container-org76adc42" class="outline-2">
+<h2 id="org76adc42">System</h2>
+<div class="outline-text-2" id="text-org76adc42">
 <p>
 This is my first attempt at using ASDF to build a system. The system uses utility files available <a href="https://github.com/brudgers/norvig-utils">here</a>.
 </p>
@@ -301,25 +301,25 @@ This is my first attempt at using ASDF to build a system. The system uses utilit
 </pre>
 </div>
 </div>
-<div id="outline-container-orgb3484c0" class="outline-3">
-<h3 id="orgb3484c0">:eliza package</h3>
-<div class="outline-text-3" id="text-orgb3484c0">
+<div id="outline-container-org546941b" class="outline-3">
+<h3 id="org546941b">:eliza package</h3>
+<div class="outline-text-3" id="text-org546941b">
 <p>
 As is the case with ASDF, this is also my first time developing using Common Lisp's package system.
 </p>
 <div class="org-src-container">
-<pre class="src src-lisp" id="org8d04075">(in-package :eliza)
+<pre class="src src-lisp" id="org9a60c8e">(in-package :eliza)
 </pre>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-orgcae5354" class="outline-2">
-<h2 id="orgcae5354">Pattern Matching</h2>
-<div class="outline-text-2" id="text-orgcae5354">
-</div><div id="outline-container-orgc11bba5" class="outline-3">
-<h3 id="orgc11bba5">simple-equal</h3>
-<div class="outline-text-3" id="text-orgc11bba5">
+<div id="outline-container-org6c8d4fd" class="outline-2">
+<h2 id="org6c8d4fd">Pattern Matching</h2>
+<div class="outline-text-2" id="text-org6c8d4fd">
+</div><div id="outline-container-org1a5e185" class="outline-3">
+<h3 id="org1a5e185">simple-equal</h3>
+<div class="outline-text-3" id="text-org1a5e185">
 <div class="org-src-container">
 <pre class="src src-lisp">(defun simple-equal (x y)
   "Are x and y equal. Does not check inside strings."
@@ -331,14 +331,14 @@ As is the case with ASDF, this is also my first time developing using Common Lis
 </div>
 </div>
 </div>
-<div id="outline-container-orgedff3d5" class="outline-3">
-<h3 id="orgedff3d5">variable-p</h3>
-<div class="outline-text-3" id="text-orgedff3d5">
+<div id="outline-container-orgf34be5c" class="outline-3">
+<h3 id="orgf34be5c">variable-p</h3>
+<div class="outline-text-3" id="text-orgf34be5c">
 <p>
 This function brings up two interesting aspects of Common Lisp. The first is that <code>atom</code>'s are not truely atomic. The second is that predicate syntax in Common Lisp suffers from the same big-language inconsistencies as might be found in PHP.
 </p>
 <div class="org-src-container">
-<pre class="src src-lisp" id="org82abac7">(defun variable-p (x)
+<pre class="src src-lisp" id="org69b903e">(defun variable-p (x)
   "Is x a variable where a variable is a symbol beginning with '?'"
   (and (symbolp x)
        (equal (char (symbol-name x) 0)
@@ -347,16 +347,16 @@ This function brings up two interesting aspects of Common Lisp. The first is tha
 </div>
 </div>
 </div>
-<div id="outline-container-org2ca50a9" class="outline-3">
-<h3 id="org2ca50a9">pat-match</h3>
-<div class="outline-text-3" id="text-org2ca50a9">
+<div id="outline-container-org9c67cc5" class="outline-3">
+<h3 id="org9c67cc5">pat-match</h3>
+<div class="outline-text-3" id="text-org9c67cc5">
 <p>
 The naive version is so straight forward it could be template code for recursing on a list (or two lists). There is a certain concision to the first part which avoids enumerating all the cases of atoms and lists. Though it arises more from the template style than anything else. 
 </p>
 </div>
-<div id="outline-container-org2a4f432" class="outline-4">
-<h4 id="org2a4f432">A naive version</h4>
-<div class="outline-text-4" id="text-org2a4f432">
+<div id="outline-container-org820b59f" class="outline-4">
+<h4 id="org820b59f">A naive version</h4>
+<div class="outline-text-4" id="text-org820b59f">
 <div class="org-src-container">
 <pre class="src src-lisp">(defun pat-match (input pattern)
   "Does pattern match input? Any variable can match anything."
@@ -370,9 +370,9 @@ The naive version is so straight forward it could be template code for recursing
 </div>
 </div>
 </div>
-<div id="outline-container-orge60c9b1" class="outline-4">
-<h4 id="orge60c9b1">A second buggy version</h4>
-<div class="outline-text-4" id="text-orge60c9b1">
+<div id="outline-container-org4f1148f" class="outline-4">
+<h4 id="org4f1148f">A second buggy version</h4>
+<div class="outline-text-4" id="text-org4f1148f">
 <p>
 One problem is that <code>(eql pattern input)</code> may return <code>t</code>. While <code>nil</code> is not a problem for <code>append</code>, <code>t</code> is&#x2026;since <code>t</code> is not a list. Booleans are actually tough if they're overloaded as they are many languages.
 </p>
@@ -397,14 +397,14 @@ The final problem is that we want the same variable (e.g. <code>?X</code>) to co
 </div>
 </div>
 </div>
-<div id="outline-container-orgb886215" class="outline-4">
-<h4 id="orgb886215">pattern matching constatns</h4>
-<div class="outline-text-4" id="text-orgb886215">
+<div id="outline-container-org22fff8a" class="outline-4">
+<h4 id="org22fff8a">pattern matching constants</h4>
+<div class="outline-text-4" id="text-org22fff8a">
 <p>
 The first step in the third version is to turn <code>pat-match</code> into a true predicate that only returns <code>nil</code> for failure. It's worth noting that only having a single value that indicates <code>false</code> is helpful here.
 </p>
 <div class="org-src-container">
-<pre class="src src-lisp" id="orgf688428">(defconstant fail nil "indicates pat-match failure.")
+<pre class="src src-lisp" id="org427021e">(defconstant fail nil "indicates pat-match failure.")
 
 (defconstant no-bindings '(t . t)
   "Indicates a pattern match success, with no variables.")
@@ -412,18 +412,18 @@ The first step in the third version is to turn <code>pat-match</code> into a tru
 </div>
 </div>
 </div>
-<div id="outline-container-org94edef0" class="outline-4">
-<h4 id="org94edef0">abstractions over assoc</h4>
-<div class="outline-text-4" id="text-org94edef0">
+<div id="outline-container-org378d69a" class="outline-4">
+<h4 id="org378d69a">abstractions over assoc</h4>
+<div class="outline-text-4" id="text-org378d69a">
 <p>
-<b>Note:</b> The ASDF build system loads these from the <code>norvig-utils</code> repository. They are shown here to maintain consistency with the text.
+<b>Note:</b> The ASDF build system loads these from my <a href="https://github.com/brudgers/norvig-utils">norvig-utils repository</a>. They are shown here to maintain consistency with the text.
 </p>
 
 <p>
 Building abstractions over <code>assoc</code> enables using the language of variables and bindings rather than low level lisp.
 </p>
 <div class="org-src-container">
-<pre class="src src-lisp" id="org24af136">(defun get-bindings (var bindings)
+<pre class="src src-lisp" id="org2474b75">(defun get-bindings (var bindings)
   "Find a (variable . value) pair in a binding list."
   (assoc var bindings))
 
@@ -442,9 +442,9 @@ Building abstractions over <code>assoc</code> enables using the language of vari
 </div>
 </div>
 </div>
-<div id="outline-container-org879d879" class="outline-4">
-<h4 id="org879d879">A third version</h4>
-<div class="outline-text-4" id="text-org879d879">
+<div id="outline-container-org775916f" class="outline-4">
+<h4 id="org775916f">A third version</h4>
+<div class="outline-text-4" id="text-org775916f">
 <p>
 There are five cases for <code>pat-match</code>:
 </p>
@@ -473,7 +473,7 @@ There are five cases for <code>pat-match</code>:
 </pre>
 </div>
 <div class="org-src-container">
-<pre class="src src-lisp" id="org673f60f">(defun match-variable (var input bindings)
+<pre class="src src-lisp" id="orgdd02266">(defun match-variable (var input bindings)
   "Does var match input. Uses bindings. Returns bindings with or without an update depending on match."
   (let ((binding (get-bindings var bindings)))
     (cond ((not binding) (extend-bindings var input bindings))
@@ -483,9 +483,9 @@ There are five cases for <code>pat-match</code>:
 </div>
 </div>
 </div>
-<div id="outline-container-org2f4b12a" class="outline-4">
-<h4 id="org2f4b12a">Segment Pattern Matching</h4>
-<div class="outline-text-4" id="text-org2f4b12a">
+<div id="outline-container-org7736ad0" class="outline-4">
+<h4 id="org7736ad0">Segment Pattern Matching</h4>
+<div class="outline-text-4" id="text-org7736ad0">
 <p>
 It is useful to have two types of variables, those that match individual input elements and others that behave like Lisp's <code>&amp;rest</code> parameter. The latter can be thought of as matching segments. This would allow a syntax such as <code>(?P need . ?X)</code>.
 </p>
@@ -500,7 +500,7 @@ It is useful to have two types of variables, those that match individual input e
 Updating <code>pat-match</code> for the new behavior:
 </p>
 <div class="org-src-container">
-<pre class="src src-lisp" id="orgb4faa3b">(defun pat-match (pattern input &amp;optional (bindings no-bindings))
+<pre class="src src-lisp" id="orgabd8753">(defun pat-match (pattern input &amp;optional (bindings no-bindings))
   "Match pattern against input in context of the bindings."
   (cond ((eq bindings fail) fail)
         ((variable-p pattern)
@@ -521,7 +521,7 @@ Updating <code>pat-match</code> for the new behavior:
 Adding the new predicate highlights Common Lisp's flexibility in regards to naming symbols by allowing a notation evocative of the kleene star.
 </p>
 <div class="org-src-container">
-<pre class="src src-lisp" id="orgc783b19">(defun segment-pattern-p (pattern)
+<pre class="src src-lisp" id="org52d726f">(defun segment-pattern-p (pattern)
   "Is this a segment matching pattern: ((?* var) . pat)"
   (and (consp pattern)
        (starts-with (first pattern) '?*)))
@@ -531,7 +531,7 @@ Adding the new predicate highlights Common Lisp's flexibility in regards to nami
 The first pass at <code>segment-match</code> address the problems that arise when the next element of the pattern is contained in the input but there are intervening elements between what has been matched already and the match for the next element of the pattern. It allows looking further ahead in the input at the expense of requiring a segment-variable to be the last variable in a pattern.
 </p>
 <div class="org-src-container">
-<pre class="src src-lisp" id="orgd6cf3b9">(defun segment-match (pattern input bindings &amp;optional (start 0))
+<pre class="src src-lisp" id="org9619acf">(defun segment-match (pattern input bindings &amp;optional (start 0))
   "Match the segment patter ((?* var) . pat) against input."
   (let ((var (second (first pattern)))
         (pat (rest pattern)))
@@ -559,11 +559,11 @@ The first pass at <code>segment-match</code> address the problems that arise whe
 </div>
 </div>
 
-<div id="outline-container-org627affd" class="outline-4">
-<h4 id="org627affd">Final</h4>
-<div class="outline-text-4" id="text-org627affd">
+<div id="outline-container-org776ecc9" class="outline-4">
+<h4 id="org776ecc9">Final</h4>
+<div class="outline-text-4" id="text-org776ecc9">
 <div class="org-src-container">
-<pre class="src src-lisp" id="org3fa317d">&lt;&lt;eliza-package&gt;&gt;
+<pre class="src src-lisp" id="orgbaf76af">&lt;&lt;eliza-package&gt;&gt;
 
 &lt;&lt;pat-match-constants&gt;&gt;
 
@@ -587,7 +587,7 @@ The first pass at <code>segment-match</code> address the problems that arise whe
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: benrudgers</p>
-<p class="date">Created: 2017-03-08 Wed 16:02</p>
+<p class="date">Created: 2017-03-08 Wed 20:26</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

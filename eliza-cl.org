@@ -80,7 +80,7 @@ The final problem is that we want the same variable (e.g. =?X=) to consistently 
             (append (pat-match (first pattern) (first input))
                     (pat-match (rest pattern) (rest input))))))
 #+END_SRC
-*** pattern matching constatns
+*** pattern matching constants
 The first step in the third version is to turn =pat-match= into a true predicate that only returns =nil= for failure. It's worth noting that only having a single value that indicates =false= is helpful here.
 #+NAME: pat-match-constants
 #+BEGIN_SRC lisp
@@ -90,7 +90,7 @@ The first step in the third version is to turn =pat-match= into a true predicate
     "Indicates a pattern match success, with no variables.")
 #+END_SRC
 *** abstractions over assoc
-*Note:* The ASDF build system loads these from the =norvig-utils= repository. They are shown here to maintain consistency with the text.
+*Note:* The ASDF build system loads these from my [[https://github.com/brudgers/norvig-utils][norvig-utils repository]]. They are shown here to maintain consistency with the text.
 
 Building abstractions over =assoc= enables using the language of variables and bindings rather than low level lisp.
 #+NAME: binding-utilities
