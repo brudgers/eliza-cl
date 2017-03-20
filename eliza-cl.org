@@ -9,6 +9,11 @@
 * System
 This is my first attempt at using ASDF to build a system. The system uses utility files available [[https://github.com/brudgers/norvig-utils][here]].
 #+BEGIN_SRC lisp :tangle eliza.asd
+  ;;; To build the system
+  ;;; (asdf:operate 'asdf:load-op :eliza)
+  ;;; then run
+  ;;; (in-package :eliza)
+
   (load "../utils/norvig-utils")
   (load "../utils/norvig-debugger")
 
@@ -86,7 +91,7 @@ The first step in the third version is to turn =pat-match= into a true predicate
 #+BEGIN_SRC lisp
   (defconstant fail nil "indicates pat-match failure.")
 
-  (defconstant no-bindings '(t . t)
+  (defconstant no-bindings '((t . t))
     "Indicates a pattern match success, with no variables.")
 #+END_SRC
 *** abstractions over assoc

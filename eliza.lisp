@@ -2,7 +2,7 @@
 
 (defconstant fail nil "indicates pat-match failure.")
 
-(defconstant no-bindings '(t . t)
+(defconstant no-bindings '((t . t))
   "Indicates a pattern match success, with no variables.")
 
 (defun get-bindings (var bindings)

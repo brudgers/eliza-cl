@@ -1,3 +1,8 @@
+;;; To build the system
+;;; (asdf:operate 'asdf:load-op :eliza)
+;;; then run
+;;; (in-package :eliza)
+
 (load "../utils/norvig-utils")
 (load "../utils/norvig-debugger")
 
