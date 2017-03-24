@@ -65,7 +65,8 @@
                              :test #'equal)))
           (if (null pos)
               fail
-              (let ((b2 (pat-match (subseq input pos)
+              (let ((b2 (pat-match pat
+                                   (subseq input pos)
                                    bindings)))
                 ;; If this match failed try another longer one
                 ;; If it worked, check that the variables match
