@@ -9,6 +9,6 @@ This project uses literate programming and the annotated source code is availabe
 
 ** Related Projects
 + Norvig's General Problem Solver in Common Lisp https://github.com/brudgers/general-problem-solver.git
-+ A 'port' of GPS to Python (in progress as of 2017_2_20): https://github.com/brudgers/gps_py.git
+
 
 
