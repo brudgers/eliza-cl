@@ -1,0 +1,12 @@
+#+TITLE: Eliza Tests
+* Tests
+** Introduction
+This is mostly an experiment:
+
+1. At the emacs level it is about building compound documents using =#+INCLUDE:= to break up org documents.
+
+2. At the literate programming level it is about beginning to incorporate testing into literate documents.
+
+3. At the Common Lisp level is about learning =lisp-unit= for unit testing.
+
+4. At the Common Lisp development environment level it is about learning =quicklisp=. It is good that I broke =quicklisp= and =ASDF= into seperate exercises. Without understanding a bit about =ASDF= I was confused when looking at =quicklisp= and when I looked at =quicklisp= it just made me confused about =ASDF=.
