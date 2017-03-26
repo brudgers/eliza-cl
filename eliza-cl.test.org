@@ -1,6 +1,6 @@
 #+TITLE: Eliza Tests
-* Tests
-** Introduction
+# Intended for import at level 2
+* Introduction
 This is mostly an experiment:
 
 1. At the emacs level it is about building compound documents using =#+INCLUDE:= to break up org documents.
