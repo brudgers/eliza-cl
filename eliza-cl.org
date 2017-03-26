@@ -233,4 +233,4 @@ The first pass at =segment-match= address the problems that arise when the next 
   <<segment-pattern-p>>
 #+END_SRC
 * Tests (experimental)
-#+INCLUDE ./eliza-cl.test.org :minlevel 2
+#+INCLUDE: ./eliza-cl.test.org :minlevel 2
