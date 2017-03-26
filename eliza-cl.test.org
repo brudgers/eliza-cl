@@ -10,3 +10,22 @@ This is mostly an experiment:
 3. At the Common Lisp level is about learning =lisp-unit= for unit testing.
 
 4. At the Common Lisp development environment level it is about learning =quicklisp=. It is good that I broke =quicklisp= and =ASDF= into seperate exercises. Without understanding a bit about =ASDF= I was confused when looking at =quicklisp= and when I looked at =quicklisp= it just made me confused about =ASDF=.
+
+* Base File
+#+BEGIN_SRC lisp :noweb tangle :tangle eliza.test.lisp
+  <<lu-install>>
+
+  <<lu-test-one>>
+#+END_SRC
+* Installing lisp-unit
+#+NAME: lu-install
+#+BEGIN_SRC lisp :tangle no
+  (asdf:load-system :lisp-unit)
+#+END_SRC
+* Test One
+#+NAME: lu-test-one
+#+BEGIN_SRC lisp :tangle no
+  (in-package :eliza)
+  (define-test test-one
+      (assert-equal 5 5))
+#+END_SRC
