@@ -16,10 +16,12 @@ This is my first attempt at using ASDF to build a system. The system uses utilit
 
   (load "../utils/norvig-utils")
   (load "../utils/norvig-debugger")
+  (asdf:load-system :lisp-unit)
 
   (defpackage #:eliza
     (:use :common-lisp
           :asdf
+          :lisp-unit
           :norvig-utils
           :norvig-debugger
           :kludgecode))
